@@ -90,7 +90,7 @@
 
     <li><a href="#courses" class="nav-item">Courses</a></li>
 
-<li><a href="#controls" class="nav-item">Controls</a></li>
+
                 
     <li><a href="#gallery" class="nav-item">Gallery</a></li>
     <li><a href="#payment" class="nav-item">Payment</a></li>
@@ -2306,48 +2306,6 @@ Advanced Topics (often introduced later): Generics, Annotations, Regular Express
 
 
 
-<section id="controls" class="container">
-    <!-- Role-Based Login Gate -->
-    <div id="controls-gatekeeper" class="gatekeeper-card">
-        <h2>Seedling Institute Controls</h2>
-        <p>Select your role and enter your encrypted access key.</p>
-        
-        <div class="role-selector">
-            <button id="btn-role-student" class="role-btn active" onclick="selectRole('student')">Student Access</button>
-            <button id="btn-role-admin" class="role-btn" onclick="selectRole('admin')">Admin Access</button>
-        </div>
-
-        <form id="controlsLoginForm" onsubmit="verifyEncryptedAccess(event)">
-            <input type="text" id="userIdentifier" placeholder="Student ID (e.g., STU-101)" required>
-            <input type="password" id="accessPassword" placeholder="Enter Password" required>
-            <button type="submit" class="btn-unlock">Unlock Controls</button>
-        </form>
-        <p id="auth-error" class="error-msg"></p>
-    </div>
-
-    <!-- UNLOCKED VIEW 1: Student Exam Portal -->
-    <div id="student-portal" class="portal-view" style="display: none;">
-        <div class="portal-header">
-            <h3>Student Exam Portal — <span id="activeStudentLabel"></span></h3>
-            <button onclick="lockControls()" class="btn-lock">Lock Session</button>
-        </div>
-        <div id="assignedTestsList">
-            <!-- Assigned tests for this student render here -->
-        </div>
-    </div>
-
-    <!-- UNLOCKED VIEW 2: Admin Control Center -->
-    <div id="admin-portal" class="portal-view" style="display: none;">
-        <div class="portal-header">
-            <h3>Admin Control Center</h3>
-            <button onclick="lockControls()" class="btn-lock">Lock Session</button>
-        </div>
-        <!-- Place your Question Bank & Test Assembly Engine here -->
-        <div id="adminWorkspace">
-            <p>Admin controls unlocked. Manage subjects, topics, and timed tests below.</p>
-        </div>
-    </div>
-</section>
 
 
                     
