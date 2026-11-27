@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Fee Payment Slip | Seedling Institute of Learning</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- Seedling Institute Logo -->
+
+  <style>
+    :root {
+      --navy: #14365d;
+      --green: #1e8449;
+      --border: #222222;
+      --tint: #f4f6f8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 20px 12px 40px;
+      background: #e9eef2;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111111;
+    }
+
+    .slip-toolbar {
+      max-width: 780px;
+      margin: 0 auto 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .slip-btn {
+      border: none;
+      border-radius: 4px;
+      padding: 8px 14px;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-print { background: var(--navy); }
+    .btn-pdf { background: var(--green); }
+    .btn-close { background: #64748b; }
+
+    .slip-sheet {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 2.5px solid var(--navy);
+      padding: 18px 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .slip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid var(--navy);
+      padding-bottom: 10px;
+    }
+
+    .slip-org-kicker {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.6px;
+    }
+
+    .slip-org-title {
+      margin: 2px 0;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .slip-org-sub {
+      font-size: 10px;
+      color: #444444;
+      line-height: 1.4;
+    }
+
+    .slip-badge {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .slip-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: #eef3f8;
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 7px 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .slip-section-title {
+      background: var(--navy);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 8px;
+      margin-top: 12px;
+    }
+
+    .slip-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0;
+      font-size: 11.5px;
+    }
+
+    .slip-table th,
+    .slip-table td {
+      border: 1px solid var(--border);
+      padding: 6px 9px;
+      text-align: left;
+    }
+
+    .slip-table th {
+      background: var(--tint);
+      color: var(--navy);
+      width: 22%;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+    }
+
+    .history-table th,
+    .history-table td {
+      border: 1px solid #444444;
+      padding: 5px 8px;
+      text-align: left;
+    }
+
+    .history-table th {
+      background: var(--tint);
+      color: var(--navy);
+      text-transform: uppercase;
+      font-size: 9.5px;
+    }
+
+    .amount-highlight {
+      margin-top: 12px;
+      border: 2px solid var(--green);
+      background: #f3faf6;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .amount-highlight .label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #111111;
+    }
+
+    .amount-highlight .value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .slip-footer {
+      margin-top: 12px;
+      font-size: 10px;
+      color: #333333;
+      line-height: 1.45;
+    }
+
+    .slip-sigs {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 38px;
+    }
+
+    .slip-sig {
+      width: 200px;
+      border-top: 1px solid #222222;
+      padding-top: 5px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .slip-sheet {
+        max-width: 100%;
+        box-shadow: none;
+        border: 2px solid #000000;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="slip-toolbar no-print">
+    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+      <strong style="color: #14365d;"><i class="fas fa-receipt"></i> Individual Fee Slip</strong>
+      <select id="receiptSwitcher" onchange="switchReceipt(this.value)" style="padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12.5px; display: none;"></select>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button type="button" onclick="window.print()" class="slip-btn btn-print">
+        <i class="fas fa-print"></i> Print Slip
+      </button>
+      <button type="button" onclick="downloadSlipPDF()" class="slip-btn btn-pdf">
+        <i class="fas fa-file-pdf"></i> Download PDF
+      </button>
+      <button type="button" onclick="window.close()" class="slip-btn btn-close">
+        <i class="fas fa-times"></i> Close Tab
+      </button>
+    </div>
+  </div>
+
+  <article id="feeSlipContainer" class="slip-sheet"></article>
+
+  <script>
+    function parseNumericFee(val) {
+      if (!val) return 0;
+      const m = String(val).replace(/,/g, "").match(/-?\d+(\.\d+)?/);
+      return m ? parseFloat(m[0]) : 0;
+    }
+
+    function formatMonthLabel(monthKey) {
+      if (!monthKey || !monthKey.includes("-")) return "";
+      const [y, m] = monthKey.split("-");
+      return new Date(Number(y), Number(m) - 1, 1).toLocaleDateString("en-IN", { month: "short", year: "numeric" });
+    }
+
+    function switchReceipt(rcpNo) {
+      if (!rcpNo) return;
+      const url = new URL(window.location.href);
+      url.searchParams.set("rcp", rcpNo);
+      window.history.replaceState({}, "", url);
+      renderSlip(rcpNo);
+    }
+
+   function loadActiveReceipt(forcedRcp = null) {
+  const params = new URLSearchParams(window.location.search);
+  const targetRcp = forcedRcp || params.get("rcp");
+  const targetId = params.get("id");
+
+  const allReceipts = JSON.parse(localStorage.getItem("seedling_payment_records") || "[]");
+  const students = JSON.parse(localStorage.getItem("seedling_students") || "[]");
+  const feeStructures = JSON.parse(localStorage.getItem("seedling_fees") || "[]");
+
+  let bill = null;
+  if (targetRcp) {
+    bill = allReceipts.find(r => String(r.receiptNo).trim() === String(targetRcp).trim()) || null;
+  }
+  if (!bill && targetId) {
+    const stuBills = allReceipts.filter(r => String(r.studentId).trim() === String(targetId).trim());
+    if (stuBills.length) bill = stuBills[0];
+  }
+  if (!bill) {
+    bill = JSON.parse(localStorage.getItem("seedling_latest_fee_slip") || "null");
+  }
+  if (!bill && allReceipts.length) {
+    bill = allReceipts[0];
+  }
+  if (!bill) return null;
+
+  const liveStudent = students.find(s => String(s.id).trim() === String(bill.studentId).trim());
+  const liveMeta = (liveStudent && liveStudent.admissionMeta) || {};
+  const matchedFeeRule = feeStructures.find(
+    f => String(f.course || "").trim().toLowerCase() === String(bill.course || (liveStudent && liveStudent.course) || "").trim().toLowerCase()
+  );
+
+  const studentReceipts = allReceipts
+    .filter(r => String(r.studentId).trim() === String(bill.studentId).trim())
+    .slice()
+    .reverse();
+
+  const instIndex = studentReceipts.findIndex(r => r.receiptNo === bill.receiptNo);
+  const installmentNumber = bill.installmentNumber || (instIndex >= 0 ? instIndex + 1 : 1);
+
+  return {
+    ...bill,
+    receiptNo: bill.receiptNo || "SEED-001",
+    studentName: (liveStudent && liveStudent.name) || bill.studentName || "-",
+    phone: liveMeta.phone || bill.phone || "-",
+    course: (liveStudent && liveStudent.course) || bill.course || "-",
+    batchCode: bill.batchCode || liveMeta.batchCode || (matchedFeeRule ? matchedFeeRule.batchCode : "-"),
+    courseFees: bill.courseFees || liveMeta.courseFees || (matchedFeeRule ? matchedFeeRule.totalFees : "-"),
+    installmentNumber: installmentNumber,
+    feeRuleNote: (matchedFeeRule && matchedFeeRule.notes) || "Paid fees are non-refundable.",
+    studentReceipts: studentReceipts
+  };
+}
+
+    function renderSlip(forcedRcp = null) {
+      const container = document.getElementById("feeSlipContainer");
+      const switcher = document.getElementById("receiptSwitcher");
+      const bill = loadActiveReceipt(forcedRcp);
+
+      if (!bill) {
+        container.innerHTML = "<p>No individual payment bill found. Please record a payment in the Fee Structure tab first.</p>";
+        return;
+      }
+
+      // Populate receipt switcher if the student has multiple individual receipts
+      if (switcher && bill.studentReceipts && bill.studentReceipts.length > 0) {
+        switcher.style.display = "inline-block";
+        switcher.innerHTML = bill.studentReceipts
+          .map((r, i) => `<option value="${r.receiptNo}" ${r.receiptNo === bill.receiptNo ? "selected" : ""}>Installment #${i + 1} — ${r.receiptNo} (${r.paymentDateDisplay}: ${r.installmentAmount})</option>`)
+          .join("");
+      }
+
+      const historyRows = (bill.studentReceipts || []).map((r, i) => {
+        const isCurrent = r.receiptNo === bill.receiptNo;
+        return `
+          <tr style="${isCurrent ? "background:#eefaf1; font-weight:bold;" : ""}">
+            <td>#${i + 1}</td>
+            <td>${r.receiptNo}${isCurrent ? " (This Bill)" : ""}</td>
+            <td>${r.paymentDateDisplay} (${formatMonthLabel(r.monthKey)})</td>
+            <td>${r.installmentAmount}</td>
+            <td>${r.remainingBalance || "0/-"}</td>
+            <td>${r.noOfEmi || "0"} left</td>
+            <td>${r.paymentType || "-"}</td>
+          </tr>
+        `;
+      }).join("");
+
+      container.innerHTML = `
+        <header class="slip-header">
+          <div>
+            <div class="slip-org-kicker">ACADEMY OF SEED</div>
+            <h1 class="slip-org-title">SEEDLING INSTITUTE OF LEARNING</h1>
+            <div class="slip-org-sub">
+              ISO 9001:2015 | MSME Registered<br />
+              Ichapur Indrapuri, Near Kalyan Samiti Club | Ph: 9007963615 / 9123971110<br />
+              Email: seedling.learn@gmail.com | Web: seedling.co.in
+            </div>
+          </div>
+          <div class="slip-badge">
+            FEE RECEIPT<br />
+            <span style="font-size:9.5px; font-weight:normal;">INSTALLMENT #${bill.installmentNumber}</span>
+          </div>
+        </header>
+
+        <div class="slip-meta-bar">
+  <span>BILL / RECEIPT NO: <strong>${bill.receiptNo}</strong></span>
+  <span>STUDENT ID: ${bill.studentId || "-"}</span>
+  <span>MONTH: ${formatMonthLabel(bill.monthKey) || "-"}</span>
+  <span>DATE: ${bill.paymentDateDisplay || "-"}</span>
+</div>
+
+        <div class="slip-section-title">Student &amp; Course Details</div>
+        <table class="slip-table">
+          <tr>
+            <th>Student Name</th>
+            <td><strong>${bill.studentName}</strong></td>
+            <th>Phone</th>
+            <td>${bill.phone}</td>
+          </tr>
+          <tr>
+            <th>Course Name</th>
+            <td><strong>${bill.course}</strong></td>
+            <th>Batch Code</th>
+            <td>${bill.batchCode}</td>
+          </tr>
+        </table>
+
+        <div class="slip-section-title">Individual Installment &amp; Updated Fee Breakdown</div>
+        <table class="slip-table">
+          <tr>
+            <th>Total Course Fees</th>
+            <td><strong>${bill.courseFees}</strong></td>
+            <th>Previous Paid</th>
+            <td>${bill.previousPaid}</td>
+          </tr>
+          <tr>
+            <th>Paid on This Bill</th>
+            <td><strong style="color:#1e8449;">${bill.installmentAmount}</strong></td>
+            <th>Total Paid to Date</th>
+            <td><strong>${bill.cumulativePaid || "-"}</strong></td>
+          </tr>
+          <tr>
+            <th>Remaining Balance</th>
+            <td><strong style="color:#c0392b;">${bill.remainingBalance || "0/-"}</strong></td>
+            <th>Remaining EMIs</th>
+            <td><strong>${bill.noOfEmi || "0"} left</strong> ${bill.emiAmount ? `(${bill.emiAmount})` : ""}</td>
+          </tr>
+          <tr>
+            <th>Payment Mode</th>
+            <td>${bill.paymentType || "-"}</td>
+            <th>Fee Status</th>
+            <td><strong>${bill.feePaid ? "PAID IN FULL" : "INSTALLMENT / ACTIVE"}</strong></td>
+          </tr>
+          <tr>
+            <th>Txn / Receipt Ref</th>
+            <td colspan="3">${bill.paymentDetails || "-"}</td>
+          </tr>
+          <tr>
+            <th>Remarks</th>
+            <td colspan="3">${bill.remarks || bill.feeRuleNote}</td>
+          </tr>
+        </table>
+
+        <div class="amount-highlight">
+          <span class="label">AMOUNT RECEIVED ON THIS SLIP (INSTALLMENT #${bill.installmentNumber})</span>
+          <span class="value">${bill.installmentAmount || "-"}</span>
+        </div>
+
+        ${historyRows ? `
+          <div class="slip-section-title">Individual Payment History (${bill.studentName})</div>
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Inst.</th>
+                <th>Receipt No</th>
+                <th>Date / Month</th>
+                <th>Paid Amount</th>
+                <th>Remaining</th>
+                <th>EMIs Left</th>
+                <th>Mode</th>
+              </tr>
+            </thead>
+            <tbody>${historyRows}</tbody>
+          </table>
+        ` : ""}
+
+        <div class="slip-footer">
+          <strong>Terms:</strong> ${bill.feeRuleNote} Please keep this individual payment slip for future fee and certificate verification.
+        </div>
+
+        <div class="slip-sigs">
+          <div class="slip-sig">Student / Guardian Signature</div>
+          <div class="slip-sig">Authorized Signatory</div>
+        </div>
+      `;
+    }
+
+    function downloadSlipPDF() {
+      const bill = loadActiveReceipt();
+      const element = document.getElementById("feeSlipContainer");
+      const safeName = bill && bill.studentName
+        ? `${bill.studentName.trim().replace(/\s+/g, "_").toUpperCase()}_${bill.receiptNo}_SLIP.pdf`
+        : "FEE_PAYMENT_SLIP.pdf";
+
+      html2pdf().set({
+        margin: 8,
+        filename: safeName,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+      }).from(element).save();
+    }
+
+    renderSlip();
+  </script>
+
+<script>
+  function loadActiveReceipt(forcedRcp = null) {
+  const params = new URLSearchParams(window.location.search);
+  const targetRcp = forcedRcp || params.get("rcp");
+  const targetId = params.get("id");
+
+  const allReceipts = JSON.parse(localStorage.getItem("seedling_payment_records") || "[]");
+  const students = JSON.parse(localStorage.getItem("seedling_students") || "[]");
+  const feeStructures = JSON.parse(localStorage.getItem("seedling_fees") || "[]");
+
+  let bill = null;
+  if (targetRcp) {
+    bill = allReceipts.find(
+      r => String(r.receiptNo || "").trim().toLowerCase() === String(targetRcp).trim().toLowerCase()
+    ) || null;
+  }
+  if (!bill && targetId) {
+    const stuBills = allReceipts.filter(
+      r => String(r.studentId || "").trim().toLowerCase() === String(targetId).trim().toLowerCase()
+    );
+    if (stuBills.length) bill = stuBills[0];
+  }
+  if (!bill) {
+    bill = JSON.parse(localStorage.getItem("seedling_latest_fee_slip") || "null");
+  }
+  if (!bill && allReceipts.length) {
+    bill = allReceipts[0];
+  }
+  if (!bill) return null;
+
+  const liveStudent = students.find(
+    s => String(s.id || "").trim().toLowerCase() === String(bill.studentId || "").trim().toLowerCase()
+  );
+  const liveMeta = (liveStudent && liveStudent.admissionMeta) || {};
+  const matchedFeeRule = feeStructures.find(
+    f => String(f.course || "").trim().toLowerCase() === String(bill.course || (liveStudent && liveStudent.course) || "").trim().toLowerCase()
+  );
+
+  const studentReceipts = allReceipts
+    .filter(r => String(r.studentId || "").trim().toLowerCase() === String(bill.studentId || "").trim().toLowerCase())
+    .slice()
+    .reverse();
+
+  const instIndex = studentReceipts.findIndex(r => r.receiptNo === bill.receiptNo);
+  const installmentNumber = bill.installmentNumber || (instIndex >= 0 ? instIndex + 1 : 1);
+
+  return {
+    ...bill,
+    receiptNo: bill.receiptNo || "SEED-001",
+    studentName: (liveStudent && liveStudent.name) || bill.studentName || "-",
+    phone: liveMeta.phone || bill.phone || "-",
+    course: (liveStudent && liveStudent.course) || bill.course || "-",
+    batchCode: bill.batchCode || liveMeta.batchCode || (matchedFeeRule ? matchedFeeRule.batchCode : "-"),
+    courseFees: bill.courseFees || liveMeta.courseFees || (matchedFeeRule ? matchedFeeRule.totalFees : "-"),
+    installmentNumber: installmentNumber,
+    feeRuleNote: (matchedFeeRule && matchedFeeRule.notes) || "Paid fees are non-refundable.",
+    studentReceipts: studentReceipts
+  };
+}
+</script>
+
+</body>
+</html>

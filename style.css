@@ -225,7 +225,99 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 }
 
 
+/*controls*/
 
+/* Controls Nav Highlight */
+.controls-nav-btn {
+    color: var(--blue) !important;
+    font-weight: bold;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.modal-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+/* Login Tabs */
+.login-tabs {
+    display: flex;
+    margin: 20px 0;
+    border-bottom: 2px solid #eee;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: none;
+    font-weight: bold;
+    cursor: pointer;
+    color: #777;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    color: var(--green);
+    border-bottom: 3px solid var(--green);
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.full-width {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
 
 
 /* Enquiry Form */
@@ -557,6 +649,867 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
     /* 5. Adjust Font Sizes for readability */
     .hero h1 { font-size: 1.8rem; }
     .container { padding: 40px 5%; }
+}
+
+
+/* Admin Top Bar */
+.admin-header {
+    background: var(--dark);
+    color: #fff;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-site-btn {
+    background: var(--green);
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+.back-site-btn:hover {
+    opacity: 0.9;
+}
+
+.admin-logout {
+    background: var(--green);
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+
+/* Admin Data Backup Buttons */
+.action-btn {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s;
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.export-btn { background-color: #2980b9; }
+.import-btn { background-color: #27ae60; }
+.copy-btn   { background-color: #8e44ad; }
+
+
+.mixed-student-form .form-row,
+.mixed-student-form .upload-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.mixed-student-form .form-field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.mixed-student-form .form-field label {
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: var(--dark);
+}
+
+.mixed-student-form .form-field input[type="text"],
+.mixed-student-form .form-field input[type="file"] {
+    padding: 9px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 0.9rem;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 12px 15px;
+    background: #f8f9fa;
+    border: 1px solid #e2e6ea;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.checkbox-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.stu-thumb {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.badge-yes {
+    background: #eafaf1;
+    color: #1e8449;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: bold;
+}
+
+.badge-no {
+    background: #fdedec;
+    color: #922b21;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: bold;
+}
+
+/* Admission Form Modal & Sheet Styling */
+.admission-modal-box {
+    background: #f4f6f8;
+    width: 95%;
+    max-width: 850px;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.admission-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #fff;
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #eee;
+}
+
+.admission-sheet-wrapper {
+    background: #ffffff;
+    padding: 35px 40px;
+    border: 1px solid #dcdcdc;
+    color: #111;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.admission-sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.admission-photo-box {
+    width: 105px;
+    height: 125px;
+    border: 1px solid #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.78rem;
+    color: #666;
+    overflow: hidden;
+    background: #fafafa;
+}
+
+.admission-photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.admission-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+}
+
+.admission-details-table th,
+.admission-details-table td {
+    border: 1px solid #bbb;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 0.92rem;
+}
+
+.admission-details-table th {
+    background: #f2f4f7;
+    width: 32%;
+    color: #2c3e50;
+}
+
+.admission-signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 55px;
+    padding-top: 10px;
+}
+
+.sig-line {
+    border-top: 1px solid #333;
+    width: 200px;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* Native Browser Print Isolation */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printableAdmissionArea,
+    #printableAdmissionArea * {
+        visibility: visible;
+    }
+    #printableAdmissionArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: none;
+        padding: 15px;
+    }
+    .no-print {
+        display: none !important;
+    }
+}
+
+
+/* Registration Sheet Form Styling */
+.reg-form-sheet {
+    border: 1.5px solid #2c3e50;
+    padding: 18px;
+    border-radius: 6px;
+    background: #ffffff;
+}
+
+.reg-section-bar {
+    background: #eef2f6;
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 8px 12px;
+    border-left: 4px solid var(--green, #1e8449);
+    margin: 18px 0 12px;
+    text-align: left;
+}
+
+.reg-section-bar:first-child {
+    margin-top: 0;
+}
+
+.reg-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.reg-field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.reg-field label {
+    font-size: 0.76rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.reg-field input[type="text"],
+.reg-field input[type="email"],
+.reg-field input[type="file"],
+.reg-field select {
+    padding: 8px 10px;
+    border: 1px solid #b8c2cc;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.reg-span-2 { grid-column: span 2; }
+.reg-span-4 { grid-column: span 4; }
+
+@media screen and (max-width: 768px) {
+    .reg-grid-4 {
+        grid-template-columns: 1fr;
+    }
+    .reg-span-2,
+    .reg-span-4 {
+        grid-column: span 1;
+    }
+}
+
+
+/* Dedicated Registration Sheet Page */
+.sheet-top-bar {
+    background: var(--dark, #2c3e50);
+    color: #fff;
+    padding: 14px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.sheet-top-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+.sheet-top-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.sheet-page-container {
+    max-width: 860px;
+    margin: 28px auto;
+    padding: 0 15px 40px;
+}
+
+.reg-pdf-sheet {
+    background: #ffffff;
+    border: 2px solid #2c3e50;
+    padding: 24px 28px;
+    color: #111;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.pdf-sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 12px;
+}
+
+.pdf-org-sub {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1e8449;
+    margin-bottom: 4px;
+}
+
+.pdf-org-meta {
+    font-size: 10.5px;
+    line-height: 1.45;
+    color: #333;
+}
+
+.pdf-photo-frame {
+    width: 95px;
+    height: 112px;
+    border: 1.5px solid #2c3e50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    color: #666;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #fafafa;
+}
+
+.pdf-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pdf-meta-strip {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #f4f6f8;
+    border: 1px solid #999;
+    border-top: none;
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.pdf-form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+.pdf-form-table th,
+.pdf-form-table td {
+    border: 1px solid #555;
+    padding: 7px 9px;
+    text-align: left;
+    font-size: 11.5px;
+    vertical-align: middle;
+}
+
+.pdf-form-table th {
+    background: #f4f6f8;
+    color: #111;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.pdf-terms-box {
+    margin-top: 12px;
+    font-size: 10.8px;
+    line-height: 1.45;
+    color: #222;
+}
+
+.pdf-terms-box div {
+    margin-bottom: 4px;
+}
+
+.pdf-date-place {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    font-size: 11.5px;
+}
+
+.pdf-sign-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 42px;
+}
+
+.pdf-sign-box {
+    width: 190px;
+    border-top: 1px solid #222;
+    padding-top: 6px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.pdf-footer-note {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+@media screen and (max-width: 600px) {
+    .reg-pdf-sheet {
+        padding: 16px;
+    }
+    .pdf-sheet-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .pdf-form-table {
+        display: block;
+        overflow-x: auto;
+    }
+    .pdf-sign-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+    }
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    body {
+        background: #fff !important;
+    }
+    .sheet-page-container {
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+    }
+    .reg-pdf-sheet {
+        border: 1.5px solid #000;
+        box-shadow: none;
+    }
+}
+
+
+/* Dedicated Registration Sheet Page */
+.sheet-top-bar {
+    background: var(--dark, #2c3e50);
+    color: #fff;
+    padding: 14px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.sheet-top-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+.sheet-top-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.sheet-page-container {
+    max-width: 860px;
+    margin: 28px auto;
+    padding: 0 15px 40px;
+}
+
+.reg-pdf-sheet {
+    background: #ffffff;
+    border: 2px solid #2c3e50;
+    padding: 24px 28px;
+    color: #111;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.pdf-sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 12px;
+}
+
+.pdf-org-sub {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1e8449;
+    margin-bottom: 4px;
+}
+
+.pdf-org-meta {
+    font-size: 10.5px;
+    line-height: 1.45;
+    color: #333;
+}
+
+.pdf-photo-frame {
+    width: 95px;
+    height: 112px;
+    border: 1.5px solid #2c3e50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    color: #666;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #fafafa;
+}
+
+.pdf-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pdf-meta-strip {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #f4f6f8;
+    border: 1px solid #999;
+    border-top: none;
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.pdf-form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+.pdf-form-table th,
+.pdf-form-table td {
+    border: 1px solid #555;
+    padding: 7px 9px;
+    text-align: left;
+    font-size: 11.5px;
+    vertical-align: middle;
+}
+
+.pdf-form-table th {
+    background: #f4f6f8;
+    color: #111;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.pdf-terms-box {
+    margin-top: 12px;
+    font-size: 10.8px;
+    line-height: 1.45;
+    color: #222;
+}
+
+.pdf-terms-box div {
+    margin-bottom: 4px;
+}
+
+.pdf-date-place {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    font-size: 11.5px;
+}
+
+.pdf-sign-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 42px;
+}
+
+.pdf-sign-box {
+    width: 190px;
+    border-top: 1px solid #222;
+    padding-top: 6px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.pdf-footer-note {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+@media screen and (max-width: 600px) {
+    .reg-pdf-sheet {
+        padding: 16px;
+    }
+    .pdf-sheet-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .pdf-form-table {
+        display: block;
+        overflow-x: auto;
+    }
+    .pdf-sign-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+    }
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    body {
+        background: #fff !important;
+    }
+    .sheet-page-container {
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+    }
+    .reg-pdf-sheet {
+        border: 1.5px solid #000;
+        box-shadow: none;
+    }
+}
+
+
+
+.reg-field input[type="text"],
+.reg-field input[type="email"],
+.reg-field input[type="date"],
+.reg-field input[type="file"],
+.reg-field select {
+    padding: 8px 10px;
+    border: 1px solid #b8c2cc;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Admin Control Panel Tabs */
+.admin-tabs-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+    border-bottom: 2px solid #d5dce3;
+    padding-bottom: 10px;
+}
+
+.admin-tab-btn {
+    background: #eef2f6;
+    color: var(--dark, #2c3e50);
+    border: 1px solid #cbd5e1;
+    padding: 10px 16px;
+    border-radius: 6px 6px 0 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s ease;
+}
+
+.admin-tab-btn:hover {
+    background: #e2e8f0;
+}
+
+.admin-tab-btn.active {
+    background: var(--dark, #2c3e50);
+    color: #ffffff;
+    border-color: var(--dark, #2c3e50);
+}
+
+.admin-tab-panel {
+    display: block;
+}
+
+
+
+
+/* Highlight rows where the student has paid full fees */
+.student-row-full-paid {
+    background-color: #eafaf1 !important;
+    border-left: 4px solid #1e8449;
+}
+
+.student-row-full-paid:hover {
+    background-color: #d4efdf !important;
+}
+
+.full-paid-pill {
+    display: inline-block;
+    background: #1e8449;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+}
+
+.due-pill {
+    display: inline-block;
+    background: #fdf2f2;
+    color: #c0392b;
+    border: 1px solid #e6b0aa;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-top: 4px;
+}
+
+.stu-action-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-width: 220px;
+}
+
+.stu-act-btn {
+    border: none;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 /* Footer */
